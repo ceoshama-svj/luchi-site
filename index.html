@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LuchI : vos devis, prêts avant que vous ne les ouvriez</title>
+<meta name="description" content="LuchI lit vos demandes de devis, prépare le PDF à votre image et vous laisse valider en un clic.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f172a;--mut:#56607a;--line:#e3e8f5;--bg:#fff;--soft:#f5f7fe;--acc:#2b4fe0;--acc2:#1d3cc0;--ok:#16a34a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Work Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.sora{font-family:Sora,'Work Sans',sans-serif;letter-spacing:-.03em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.sc{border-color:var(--line)}
+.nv{display:flex;align-items:center;height:76px;gap:40px}
+.logo{display:flex;align-items:center;gap:12px;font:800 24px Sora;letter-spacing:-.04em}
+.mk{width:40px;height:40px;border-radius:11px;background:var(--acc);color:#fff;display:grid;place-items:center;font:800 17px Sora;letter-spacing:-.04em;box-shadow:0 8px 20px rgba(43,79,224,.35)}
+.links{display:flex;gap:30px;margin-left:20px;font-weight:500;color:var(--mut);font-size:15.5px}
+.links a:hover{color:var(--ink)}
+.sp{flex:1}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:12px;font:600 15.5px 'Work Sans';border:1px solid var(--line);background:#fff;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(30,50,120,.14)}
+.btn.p{background:var(--acc);border-color:var(--acc);color:#fff;box-shadow:0 10px 26px rgba(43,79,224,.35)}
+.btn.p:hover{background:var(--acc2);box-shadow:0 14px 32px rgba(43,79,224,.45)}
+.btn.lg{height:60px;padding:0 34px;font-size:17px;border-radius:14px}
+/* hero */
+.hero{padding:150px 0 90px;position:relative;overflow:hidden;background:radial-gradient(900px 600px at 85% 0,#eaefff 0,transparent 70%)}
+.hg{display:grid;grid-template-columns:1.02fr 1fr;gap:60px;align-items:center}
+.pill{display:inline-flex;gap:10px;align-items:center;font:600 14px 'Work Sans';color:var(--acc);background:#eaefff;border-radius:99px;padding:8px 16px;margin-bottom:26px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--acc);animation:pu 1.8s infinite}
+@keyframes pu{50%{opacity:.35;transform:scale(.7)}}
+h1{font-size:68px;line-height:1.04;font-weight:800}
+h1 em{font-style:normal;color:var(--acc)}
+.lead{font-size:21px;color:var(--mut);margin:26px 0 38px;max-width:560px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.note{margin-top:22px;font-size:14.5px;color:var(--mut);display:flex;gap:22px;flex-wrap:wrap}
+.note span:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:9px;vertical-align:middle}
+/* product mock */
+.mock{position:relative}
+.win{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 40px 90px rgba(30,50,120,.2);overflow:hidden}
+.wb{display:flex;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);background:#fafbff}
+.wb b{width:11px;height:11px;border-radius:50%;background:#dfe4f3}
+.wbody{display:grid;grid-template-columns:150px 1fr;min-height:430px}
+.side{background:var(--soft);padding:16px 12px;border-right:1px solid var(--line);font-size:12.5px;color:var(--mut)}
+.side .b{display:flex;gap:8px;align-items:center;font:700 13px Sora;color:var(--ink);margin-bottom:16px}
+.side .b i{width:24px;height:24px;border-radius:7px;background:var(--acc);color:#fff;font:800 10px/24px Sora;text-align:center;font-style:normal}
+.side div.i{padding:8px 10px;border-radius:8px;margin-bottom:3px}
+.side div.on{background:#e1e8ff;color:var(--acc);font-weight:600}
+.dv{padding:20px 22px}
+.dv .t{display:flex;justify-content:space-between;align-items:flex-start}
+.dv h4{font:700 19px Sora;letter-spacing:-.02em}
+.dv small{color:var(--mut);font-size:12px}
+.st{font:700 10.5px 'Work Sans';padding:4px 10px;border-radius:99px;background:#fff3d6;color:#a16207;letter-spacing:.04em}
+.st.ok{background:#dcfce7;color:#15803d}
+.ln{display:grid;grid-template-columns:1fr 40px 80px;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.ln.h{font-size:10.5px;letter-spacing:.06em;color:var(--mut);font-weight:600}
+.ln span:nth-child(n+2){text-align:right}
+.tot{display:flex;justify-content:space-between;margin-top:14px;font:700 17px Sora;padding:12px 14px;background:var(--soft);border-radius:10px}
+.act{display:flex;gap:10px;margin-top:16px}
+.act .btn{height:40px;font-size:13px;padding:0 16px;border-radius:9px;box-shadow:none}
+.float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;box-shadow:0 20px 50px rgba(30,50,120,.2);font-size:13px;display:flex;gap:12px;align-items:center}
+.float i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;font:700 14px Sora;color:#fff}
+.float b{display:block;font:700 13.5px Sora}.float span{color:var(--mut);font-size:12px}
+.f1{right:34px;top:-30px;animation:fl 6s ease-in-out infinite}.f1 i{background:#ea4335}
+.f2{left:-60px;bottom:-70px;animation:fl 6s ease-in-out -3s infinite}.f2 i{background:var(--ok)}
+@keyframes fl{50%{transform:translateY(-12px)}}
+/* sections */
+section{padding:110px 0}
+.eyebrow{font:600 14px 'Work Sans';color:var(--acc);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+h2{font-size:48px;line-height:1.08;font-weight:800;max-width:780px}
+.sub{font-size:19px;color:var(--mut);margin-top:18px;max-width:640px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:60px}
+.step{border:1px solid var(--line);border-radius:20px;padding:30px 26px 32px;background:#fff;position:relative;transition:transform .3s,box-shadow .3s}
+.step:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(30,50,120,.12)}
+.step .n{font:800 52px Sora;color:#dfe6ff;letter-spacing:-.05em}
+.step h3{font-size:21px;margin:14px 0 10px}
+.step p{color:var(--mut);font-size:15.5px}
+.soft{background:var(--soft)}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:60px}
+.fc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px 28px}
+.ic{width:50px;height:50px;border-radius:14px;background:#eaefff;display:grid;place-items:center;margin-bottom:22px}
+.ic svg{width:25px;height:25px;stroke:var(--acc);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fc h3{font-size:20px;margin-bottom:10px}.fc p{color:var(--mut);font-size:15.5px}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.pc{background:#fff;border:1px solid var(--line);border-radius:28px;padding:48px 44px;box-shadow:0 40px 90px rgba(30,50,120,.16);position:relative}
+.pc .tag{position:absolute;top:-16px;left:44px;background:var(--acc);color:#fff;font:600 13px 'Work Sans';padding:7px 16px;border-radius:99px}
+.amt{font:800 76px Sora;letter-spacing:-.05em;line-height:1}
+.amt small{font:600 22px 'Work Sans';letter-spacing:0;color:var(--mut)}
+.pc ul{list-style:none;margin:30px 0 34px}
+.pc li{padding:11px 0 11px 34px;position:relative;border-bottom:1px solid var(--line);font-size:16px}
+.pc li:before{content:"";position:absolute;left:0;top:15px;width:20px;height:20px;border-radius:50%;background:#dcfce7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%2316a34a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.pc .btn{width:100%;justify-content:center}
+.fin{padding:100px 0;text-align:center;background:var(--acc);color:#fff;position:relative;overflow:hidden}
+.fin h2{margin:0 auto;color:#fff;max-width:900px}
+.fin p{color:#cdd8ff;font-size:20px;margin:20px 0 38px}
+.fin .btn{background:#fff;color:var(--acc);border-color:#fff}
+footer{padding:44px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--mut)}
+footer .wrap{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+footer .logo{font-size:20px;color:var(--ink)}footer .mk{width:32px;height:32px;font-size:14px;border-radius:9px;box-shadow:none}
+footer a:hover{color:var(--ink)}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@media(max-width:1000px){.hg,.price{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.feat{grid-template-columns:1fr 1fr}h1{font-size:50px}.links{display:none}.f1,.f2{display:none}}
+@media(max-width:640px){.wrap{padding:0 22px}.steps,.feat{grid-template-columns:1fr}h1{font-size:40px}h2{font-size:34px}.hero{padding-top:120px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav id="nav"><div class="wrap nv">
+  <a class="logo" href="#top"><span class="mk">LI</span>LuchI</a>
+  <div class="links"><a href="#fonctionnement">Fonctionnement</a><a href="#fonctions">Fonctionnalités</a><a href="#tarif">Tarif</a></div>
+  <div class="sp"></div>
+  <a class="btn" href="https://luchi-app-v2.vercel.app">Se connecter</a>
+  <a class="btn p" href="https://luchi-app-v2.vercel.app">Créer mon compte</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap hg">
+  <div>
+    <div class="pill rv"><i></i>Pour les artisans et entreprises du bâtiment</div>
+    <h1 class="rv d1">Vos devis sont prêts <em>avant que vous ne les ouvriez.</em></h1>
+    <p class="lead rv d2">LuchI lit les demandes reçues dans votre boîte Gmail, prépare le devis PDF à votre image avec vos tarifs, et vous le soumet. Vous vérifiez, vous validez, il part.</p>
+    <div class="cta rv d3">
+      <a class="btn p lg" href="https://luchi-app-v2.vercel.app">Créer mon compte</a>
+      <a class="btn lg" href="#fonctionnement">Voir comment ça marche</a>
+    </div>
+    <div class="note rv d3"><span>Vous gardez la main avant chaque envoi</span><span>Envoi depuis votre propre adresse Gmail</span></div>
+  </div>
+  <div class="mock rv d2">
+    <div class="win">
+      <div class="wb"><b></b><b></b><b></b></div>
+      <div class="wbody">
+        <div class="side"><div class="b"><i>DP</i>Dubois Plomberie</div>
+          <div class="i">Tableau de bord</div><div class="i on">Devis à vérifier</div><div class="i">Historique</div><div class="i">Compte</div></div>
+        <div class="dv">
+          <div class="t"><div><h4>Thomas Girard</h4><small>DV-2026-0043 · Ajaccio</small></div><span class="st">À VALIDER</span></div>
+          <div style="margin-top:16px">
+            <div class="ln h"><span>PRESTATION</span><span>QTÉ</span><span>TOTAL HT</span></div>
+            <div class="ln"><span>Robinet mitigeur</span><span>1</span><span>185,00 €</span></div>
+            <div class="ln"><span>WC complet</span><span>1</span><span>320,00 €</span></div>
+            <div class="ln"><span>Chauffe-eau 200 L</span><span>1</span><span>890,00 €</span></div>
+            <div class="ln"><span>Recherche de fuite</span><span>1</span><span>180,00 €</span></div>
+            <div class="ln"><span>Frais de déplacement</span><span>1</span><span>80,00 €</span></div>
+          </div>
+          <div class="tot"><span>Total TTC</span><span>1 820,50 €</span></div>
+          <div class="act"><span class="btn p">Valider et envoyer</span><span class="btn">Modifier</span><span class="btn">Aperçu PDF</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="float f1"><i>M</i><div><b>Nouvelle demande de devis</b><span>Détectée dans votre boîte Gmail</span></div></div>
+    <div class="float f2"><i>&#10003;</i><div><b>Devis envoyé</b><span>PDF joint, depuis votre adresse</span></div></div>
+  </div>
+</div></header>
+
+<section id="fonctionnement"><div class="wrap">
+  <div class="eyebrow rv">Fonctionnement</div>
+  <h2 class="rv d1">De la demande au devis envoyé, en quatre étapes.</h2>
+  <p class="sub rv d2">Vous configurez une fois. Ensuite, chaque demande suit le même chemin, sans ressaisie.</p>
+  <div class="steps">
+    <div class="step rv"><div class="n">01</div><h3>Connectez votre Gmail</h3><p>LuchI surveille votre boîte mail et repère les demandes de devis, toutes les heures ou sur demande.</p></div>
+    <div class="step rv d1"><div class="n">02</div><h3>Donnez votre modèle et vos tarifs</h3><p>Envoyez un de vos devis PDF et votre grille de prix : chaque devis reprend votre mise en page et vos prestations.</p></div>
+    <div class="step rv d2"><div class="n">03</div><h3>LuchI prépare le devis</h3><p>Prestations, quantités et total sont déterminés à partir de la demande reçue, puis rangés dans « Devis à vérifier ».</p></div>
+    <div class="step rv d3"><div class="n">04</div><h3>Vous validez et envoyez</h3><p>Vous relisez, vous ajustez si besoin, vous prévisualisez le PDF et vous envoyez en un clic depuis votre adresse.</p></div>
+  </div>
+</div></section>
+
+<section class="soft" id="fonctions"><div class="wrap">
+  <div class="eyebrow rv">Fonctionnalités</div>
+  <h2 class="rv d1">Tout le processus de devis, au même endroit.</h2>
+  <div class="feat">
+    <div class="fc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></div><h3>Lecture de votre boîte Gmail</h3><p>Les demandes de devis sont détectées automatiquement ; les autres mails vont dans « Autre ».</p></div>
+    <div class="fc rv d1"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></div><h3>PDF à votre image</h3><p>Votre logo, vos couleurs, vos mentions légales : le modèle est repris de votre propre devis.</p></div>
+    <div class="fc rv d2"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/></svg></div><h3>Votre grille tarifaire</h3><p>Vos prestations et vos prix HT servent de base à chaque devis, avec la TVA de votre choix.</p></div>
+    <div class="fc rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><h3>Modification en un clic</h3><p>Quantités, prix, désignations : tout reste ajustable avant l’envoi.</p></div>
+    <div class="fc rv d1"><div class="ic"><svg viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></div><h3>Envoi depuis votre adresse</h3><p>Le client reçoit le PDF en pièce jointe, depuis votre Gmail, et le statut passe à « Envoyé ».</p></div>
+    <div class="fc rv d2"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></div><h3>Tableau de bord de suivi</h3><p>Devis reçus, envoyés, en attente, relances en retard : votre suivi du mois en un coup d’œil.</p></div>
+  </div>
+</div></section>
+
+<section id="tarif"><div class="wrap price">
+  <div>
+    <div class="eyebrow rv">Tarif</div>
+    <h2 class="rv d1">Un seul abonnement, tout compris.</h2>
+    <p class="sub rv d2">Pas d’option cachée : l’ensemble des fonctionnalités est inclus, avec la configuration de votre modèle et de vos tarifs.</p>
+  </div>
+  <div class="pc rv d1"><span class="tag">Abonnement mensuel</span>
+    <div class="amt">199,99 €<small> HT / mois</small></div>
+    <ul><li>Lecture de votre boîte Gmail</li><li>Devis PDF à votre image et avec vos tarifs</li><li>Vérification, modification et aperçu avant envoi</li><li>Envoi depuis votre adresse et suivi des devis</li><li>Paiement sécurisé par carte</li></ul>
+    <a class="btn p lg" href="https://luchi-app-v2.vercel.app">Créer mon compte</a>
+  </div>
+</div></section>
+
+<div class="fin"><div class="wrap">
+  <h2 class="rv">Tout votre processus de devis. Au même endroit.</h2>
+  <p class="rv d1">Créez votre compte et configurez LuchI en quelques minutes.</p>
+  <a class="btn lg rv d2" href="https://luchi-app-v2.vercel.app">Créer mon compte</a>
+</div></div>
+
+<footer><div class="wrap"><a class="logo" href="#top"><span class="mk">LI</span>LuchI</a><span>© 2026 LuchI</span><div class="sp" style="flex:1"></div><a href="https://luchi-app-v2.vercel.app/cgv.html">CGV</a><a href="https://luchi-app-v2.vercel.app/cgu.html">CGU</a><a href="https://luchi-app-v2.vercel.app/confidentialite.html">Confidentialité</a></div></footer>
+
+<script>
+(function(){
+ var nav=document.getElementById('nav');
+ function sc(){nav.classList.toggle('sc',scrollY>10)} addEventListener('scroll',sc,{passive:true});sc();
+ var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12});
+ document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+ /* Mode tournage : ajouter ?demo à l'adresse pour un défilement automatique et fluide */
+ if(/[?&]demo/.test(location.search)){
+  document.documentElement.style.scrollBehavior='auto';
+  var dur=+(new URLSearchParams(location.search).get('demo')||32)*1000, t0=null, wait=1800;
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+  function step(ts){
+   if(!t0)t0=ts+wait; var p=Math.min(1,Math.max(0,(ts-t0)/dur));
+   scrollTo(0,ease(p)*(document.documentElement.scrollHeight-innerHeight));
+   if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+ }
+})();
+</script>
+</body>
+</html>
