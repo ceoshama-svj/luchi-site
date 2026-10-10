@@ -56,6 +56,7 @@ h1 em{font-style:normal;color:var(--acc);display:block}
 .chips::-webkit-scrollbar{display:none}
 .chip{display:flex;align-items:center;gap:8px;font:600 13px 'Work Sans';color:var(--mut);background:#fff;border:1px solid var(--line);border-radius:99px;padding:8px 14px;cursor:pointer;white-space:nowrap;transition:all .3s;flex:none}
 .chip svg{font-size:15px}
+@media(min-width:700px){#heroPlayer .chips{flex-wrap:wrap;overflow:visible}}
 .chip.on{background:var(--acc);color:#fff;border-color:var(--acc);box-shadow:0 8px 20px rgba(43,79,224,.3)}
 .chip.dn{color:var(--ink)}
 .win{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 40px 90px rgba(30,50,120,.2);overflow:hidden}
@@ -179,6 +180,13 @@ h2{font-size:46px;line-height:1.08;font-weight:800;max-width:800px}
 .pc li:before{content:"";position:absolute;left:0;top:15px;width:20px;height:20px;border-radius:50%;background:#dcfce7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%2316a34a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 .pc .btn{width:100%}
 .pc .fine{margin-top:14px;font-size:13.5px;color:var(--mut);text-align:center}
+.pt{max-width:860px;margin:0 auto 48px;text-align:center}.pt .auto{text-align:left}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch}
+.plans .pc{display:flex;flex-direction:column;padding:44px 34px}.plans .pc .tag{left:34px}
+.plans .pc ul{flex:1}.plans .pc .amt{font-size:56px}.plans .amt small{font-size:19px}
+.pd{color:var(--mut);margin-top:14px;font-size:15.5px}
+.pc.pm .tag{background:var(--ink)}
+@media(max-width:1100px){.plans{grid-template-columns:1fr}}
 .fin{padding:100px 0;text-align:center;background:var(--acc);color:#fff;position:relative;overflow:hidden}
 .fin h2{margin:0 auto;color:#fff;max-width:900px}
 .fin p{color:#cdd8ff;font-size:20px;margin:20px 0 38px}
@@ -190,7 +198,7 @@ footer a:hover{color:var(--ink)}
 /* mobile sticky cta */
 .mcta{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:40;transform:translateY(140%);transition:transform .4s}
 .mcta.on{transform:none}
-.mcta .btn{width:100%;height:54px;font-size:16px}
+.mcta .btn{width:100%;height:54px;font-size:16px}.mcta .btn small{font:500 13.5px 'Work Sans';opacity:.9;margin-left:6px}
 .rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
@@ -551,9 +559,9 @@ footer a:hover{color:var(--ink)}
 -->
 
 <!-- 10 PRIX -->
-<section id="tarif"><div class="wrap price">
-  <div>
-    <div class="eyebrow rv">Tarif</div>
+<section id="tarif"><div class="wrap">
+  <div class="pt">
+<div class="eyebrow rv">Tarif</div>
     <h2 class="rv d1">Deux formules. Le suivi et les relances sont inclus dans les deux.</h2>
     <p class="sub rv d2">Chaque demande reçue déclenche tout ce qui suit, sans que vous ayez à le refaire :</p>
     <ul class="auto rv d2">
@@ -566,16 +574,22 @@ footer a:hover{color:var(--ink)}
       <li><svg class="i"><use href="#i-check"/></svg>Envoi après votre validation</li>
       <li><svg class="i"><use href="#i-check"/></svg>Suivi des devis et relances prêtes à envoyer</li>
     </ul>
-    <div class="prem rv d3"><div class="ph"><b>Premium · Pro + factures</b><span>249,99 €<small> HT / mois</small></span></div>
-      <p>Tout le Pro, et la facturation : prête à envoyer par Gmail ou à télécharger.</p>
-      <ul><li><svg class="i"><use href="#i-check"/></svg>Factures et acomptes en un clic, numérotation continue</li><li><svg class="i"><use href="#i-check"/></svg>Votre modèle de facture, IBAN, délai et mentions légales</li><li><svg class="i"><use href="#i-check"/></svg>Suivi des paiements</li><li><svg class="i"><use href="#i-clock"/></svg>Facture électronique via plateforme agréée (bientôt)</li></ul>
+      </div>
+  <div class="plans">
+    <div class="pc rv d1"><span class="tag">Pro</span>
+      <div class="amt">199,99 €<small> HT / mois</small></div>
+      <p class="pd">Les devis, de la demande à l'envoi, avec suivi et relances.</p>
+      <ul><li>Lecture de votre boîte Gmail</li><li>Devis PDF à votre image et avec vos tarifs</li><li>Vérification, modification et aperçu avant envoi</li><li>Envoi depuis votre adresse, suivi et relances</li><li>Acomptes et export de votre grille</li></ul>
+      <a class="btn p lg" href="#inscription">Essayer gratuitement, sans carte</a>
+      <div class="fine"><strong>Essai gratuit, sans carte.</strong> Puis engagement de 3 mois pour la mise en place de votre modèle PDF et de votre grille tarifaire, réglé à l'avance en une fois : 599,97 € HT. Ensuite 199,99 € HT par mois, résiliable à tout moment. <strong>Remboursé sous 7 jours</strong> après l'activation de votre compte. Accès ouvert sous 24 h ouvrées.</div>
     </div>
-  </div>
-  <div class="pc rv d1"><span class="tag">Pro</span>
-    <div class="amt">199,99 €<small> HT / mois</small></div>
-    <ul><li>Lecture de votre boîte Gmail</li><li>Devis PDF à votre image et avec vos tarifs</li><li>Vérification, modification et aperçu avant envoi</li><li>Envoi depuis votre adresse, suivi et relances</li><li>Acomptes et export de votre grille</li><li>Paiement sécurisé par carte</li></ul>
-    <a class="btn p lg" href="#inscription">Essayer gratuitement, sans carte</a>
-    <div class="fine"><strong>Essai gratuit, sans carte.</strong> Puis engagement de 3 mois pour la mise en place de votre modèle PDF et de votre grille tarifaire, réglé à l'avance en une fois : 599,97 € HT. Ensuite 199,99 € HT par mois, résiliable à tout moment. <strong>Remboursé sous 7 jours</strong> après l'activation de votre compte. Accès ouvert sous 24 h ouvrées.</div>
+    <div class="pc pm rv d2"><span class="tag">Premium</span>
+      <div class="amt">249,99 €<small> HT / mois</small></div>
+      <p class="pd">Tout le Pro, et la facturation : prête à envoyer par Gmail ou à télécharger.</p>
+      <ul><li>Factures et acomptes en un clic, numérotation continue</li><li>Votre modèle de facture, IBAN, délai et mentions légales</li><li>Suivi des paiements</li><li>Facture électronique via plateforme agréée (bientôt)</li></ul>
+      <a class="btn p lg" href="#inscription">Essayer gratuitement, sans carte</a>
+      <div class="fine"><strong>Essai gratuit, sans carte.</strong> Puis engagement de 3 mois pour la mise en place de votre modèle PDF et de votre grille tarifaire, réglé à l'avance en une fois : 749,97 € HT. Ensuite 249,99 € HT par mois, résiliable à tout moment. <strong>Remboursé sous 7 jours</strong> après l'activation de votre compte. Accès ouvert sous 24 h ouvrées.</div>
+    </div>
   </div>
 </div></section>
 
@@ -645,7 +659,7 @@ $('izform').addEventListener('submit',function(ev){
 </script>
 <footer><div class="wrap"><a class="logo" href="#top"><span class="mk">LI</span>LuchI</a><span>© 2026 LuchI</span><div class="sp" style="flex:1"></div><a href="https://luchi-app-v2.vercel.app/cgv.html">CGV</a><a href="https://luchi-app-v2.vercel.app/cgu.html">CGU</a><a href="https://luchi-app-v2.vercel.app/confidentialite.html">Confidentialité</a></div></footer>
 
-<div class="mcta" id="mcta"><a class="btn p" href="#inscription">Demander mon essai gratuit</a></div>
+<div class="mcta" id="mcta"><a class="btn p" href="#inscription">Essai gratuit <small>· sans carte bancaire</small></a></div>
 
 <script>
 (function(){
