@@ -622,7 +622,7 @@ footer a:hover{color:var(--ink)}
     <form id="izform" novalidate>
       <div class="iz2 izr"><div><label for="iz-prenom">Prénom</label><input type="text" id="iz-prenom" autocomplete="given-name" maxlength="60"></div><div><label for="iz-ent">Nom de l'entreprise</label><input type="text" id="iz-ent" autocomplete="organization" maxlength="100"></div></div>
       <div class="izr"><label for="iz-email">Votre e-mail professionnel</label><input type="email" id="iz-email" autocomplete="email" placeholder="contact@entreprise.fr" maxlength="254"></div>
-      <div class="izr"><label for="iz-metier">Votre métier</label><select id="iz-metier"><option>Plombier</option><option>Électricien</option><option>Chauffagiste / climatisation</option><option>Maçon / rénovation</option><option>Peintre / plaquiste</option><option>Autre métier du bâtiment</option></select></div>
+      <div class="izr"><label for="iz-metier">Votre métier</label><input type="text" id="iz-metier" list="iz-metiers" placeholder="Ex. plomberie et électricité" maxlength="100"><datalist id="iz-metiers"><option value="Plombier"><option value="Électricien"><option value="Chauffagiste / climatisation"><option value="Maçon / rénovation"><option value="Peintre / plaquiste"><option value="Garagiste"></datalist></div>
       <div class="izr"><label for="iz-qui">Qui prépare les devis chez vous ?</label><select id="iz-qui"><option>Le patron</option><option>La secrétaire / l'assistante</option><option>Le comptable</option><option>Autre</option></select></div>
       <div class="izr"><label for="iz-msgr">Quelle messagerie recevez-vous les demandes ?</label><select id="iz-msgr"><option>Gmail</option><option>Outlook / Microsoft 365</option><option>Autre (OVH, Orange, Yahoo…)</option></select></div>
       <div class="izr" id="iz-gmwrap"><label for="iz-gmail">Adresse Gmail où arrivent les demandes <small>(si différente de l'e-mail ci-dessus)</small></label><input type="email" id="iz-gmail" autocomplete="off" maxlength="254"></div>
@@ -643,7 +643,7 @@ $('iz-msgr').addEventListener('change',function(){$('iz-gmwrap').style.display=$
 $('izform').addEventListener('submit',function(ev){
   ev.preventDefault();
   var e=$('iz-err');e.textContent='';
-  var p={prenom:$('iz-prenom').value.trim(),entreprise:$('iz-ent').value.trim(),email:$('iz-email').value.trim(),metier:$('iz-metier').value,qui:$('iz-qui').value,messagerie:$('iz-msgr').value,gmail:$('iz-msgr').value==='Gmail'?$('iz-gmail').value.trim():'',tel:$('iz-tel').value.trim(),consent:$('iz-consent').checked,website:$('iz-web').value,source:'site'};
+  var p={prenom:$('iz-prenom').value.trim(),entreprise:$('iz-ent').value.trim(),email:$('iz-email').value.trim(),metier:$('iz-metier').value.trim()||'Non précisé',qui:$('iz-qui').value,messagerie:$('iz-msgr').value,gmail:$('iz-msgr').value==='Gmail'?$('iz-gmail').value.trim():'',tel:$('iz-tel').value.trim(),consent:$('iz-consent').checked,website:$('iz-web').value,source:'site'};
   if(!p.prenom||!p.entreprise){e.textContent='Indiquez votre prénom et le nom de votre entreprise.';return}
   if(!/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(p.email)){e.textContent='Cette adresse e-mail ne semble pas valide.';return}
   if(!p.consent){e.textContent='Cochez la case pour que nous puissions vous recontacter.';return}
