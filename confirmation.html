@@ -33,7 +33,13 @@ body{background:radial-gradient(circle at 50% 0,var(--soft),var(--bg) 62%);color
 .check path{stroke:var(--ok);stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60;animation:draw .6s .45s ease forwards}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;transition:none!important}}
 [hidden]{display:none!important}
-</style></head><body>
+</style><script id="luchi-consent">(function(){var K='luchi-cookies',ID='1116570847890145';function ld(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',ID);fbq('track','PageView')}
+var c=null;try{c=localStorage.getItem(K)}catch(e){}
+if(c==='yes'){ld();return}
+if(c==='no')return;
+function show(){var d=document.createElement('div');d.setAttribute('role','dialog');d.setAttribute('aria-label','Cookies');d.style.cssText='position:fixed;left:12px;right:12px;bottom:12px;max-width:620px;margin:0 auto;background:#fff;color:#1a2236;border:1px solid #d9deea;border-radius:14px;box-shadow:0 8px 30px rgba(20,30,60,.18);padding:16px;z-index:99999;font:14px/1.45 system-ui,sans-serif';d.innerHTML='<b style="display:block;margin-bottom:4px">Cookies</b><p style="margin:0 0 12px">Nous utilisons un outil de mesure (Meta) pour savoir si nos publicités fonctionnent. Vous choisissez.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button id="lc-y" style="background:#2f5bea;color:#fff;border:0;border-radius:9px;padding:10px 16px;font-weight:600;cursor:pointer">Accepter</button><button id="lc-n" style="background:#fff;color:#1a2236;border:1px solid #c5ccdc;border-radius:9px;padding:10px 16px;font-weight:600;cursor:pointer">Refuser</button></div><div style="font-size:12px;color:#6a7388;margin-top:8px">Le pixel Meta ne s’active que si vous cliquez sur « Accepter ». Si vous refusez, rien n’est suivi.</div>';document.body.appendChild(d);function s(v){try{localStorage.setItem(K,v)}catch(e){}d.remove();if(v==='yes')ld()}d.querySelector('#lc-y').onclick=function(){s('yes')};d.querySelector('#lc-n').onclick=function(){s('no')}}
+if(document.body)show();else document.addEventListener('DOMContentLoaded',show)})();</script>
+</head><body>
 <main class="center" id="box" aria-live="polite">
   <div class="logo floaty"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v8a6 6 0 0 0 12 0V5"/></svg></div>
   <div class="brand">LuchI</div>
